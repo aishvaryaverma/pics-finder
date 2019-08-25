@@ -1,11 +1,6 @@
 import React from 'react';
 
 class SearchBar extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.inputRef = React.createRef();
-    }
     state = {
         term: ''
     }
@@ -18,7 +13,7 @@ class SearchBar extends React.Component {
     onFormSubmit = e => {
         e.preventDefault();
         this.props.onSearchSubmit(this.state.term);
-        this.inputRef.current.value = '';
+        this.setState({ term: '' })
     }
 
     render() {
@@ -28,10 +23,9 @@ class SearchBar extends React.Component {
                 <form className="ui form" onSubmit={this.onFormSubmit}>
                     <label>Search Images</label>
                     <input
-                        type="text"
                         className="feild"
+                        type="text"
                         value={term}
-                        ref={this.inputRef}
                         onChange={this.onInputChange}
                     />
                 </form>
